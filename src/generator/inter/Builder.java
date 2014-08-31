@@ -14,27 +14,28 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 public abstract class Builder {
-	private Map<String, Object> model;
+
 	private String filePath;
+	private ModelBean model;
 
 	public String getFilePath() {
 		return Property.getInstance().getFilePath();
 	}
 
 	public String getClassName() {
-		return ((ModelBean) (model.get("modelBean"))).getClassName();
+		return model.getClassName();
 	}
 
-	public Map<String, Object> getModel() {
+	public ModelBean getModel() {
 		return model;
 	}
 
-	public void setModel(Map<String, Object> model) {
+	public void setModel(ModelBean model) {
 		this.model = model;
 	}
 
 	public Configuration initConfiguration() {
-		File file = new File("/resources/template");
+		File file = new File(Builder.class.getResource("/").getPath() + "resources/template");
 		Configuration cfg = new Configuration();
 		try {
 			cfg.setDirectoryForTemplateLoading(file);

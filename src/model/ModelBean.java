@@ -6,7 +6,7 @@ import utils.StringUtils;
 
 public class ModelBean {
 
-	private String packageName;
+	private String packageName = "1111";
 	private List<String> importPackage;
 	private String className;
 	private String tableName;

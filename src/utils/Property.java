@@ -8,9 +8,9 @@ import java.util.Properties;
  * 获取属性文件类
  * 
  * @author Wuhao
- * 
  */
 public class Property {
+
 	private static Property propertyUtils;
 	private Properties config;
 	private String driverClassName;
@@ -22,6 +22,12 @@ public class Property {
 	private String tableName;
 
 	private String filePath;
+
+	private String domainPackage;
+
+	public String getDomainPackage() {
+		return config.getProperty("file.package");
+	}
 
 	public String getFilePath() {
 		return config.getProperty("file.path");
@@ -51,7 +57,7 @@ public class Property {
 		return config.getProperty("jdbc.password");
 	}
 
-	private Property() {
+	private Property(){
 		try {
 			// config =
 			// FileUtils.loadPropertiesByCurrentThread("resources\\config.properties");
