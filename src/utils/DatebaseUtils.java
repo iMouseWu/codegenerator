@@ -13,8 +13,10 @@ import model.ModelFields;
 import utils.constant.DataTypeEnum;
 
 public class DatebaseUtils {
+
 	public final static String SPILIT = ",";
 	public final static String sql = "SELECT TABLE_NAME,COLUMN_NAME,DATA_TYPE,COLUMN_KEY,EXTRA,COLUMN_COMMENT FROM information_schema.`COLUMNS` WHERE TABLE_SCHEMA=? AND TABLE_NAME=?";
+	public final String type = "java.util.Date";
 	private static Connection conn;
 	static {
 		Property jdbc = Property.getInstance();
@@ -42,7 +44,6 @@ public class DatebaseUtils {
 		try {
 			String dbName = property.getDbName();
 			String tableNames = property.getTableName();
-
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dbName);
 			for (String tableName : tableNames.split(SPILIT)) {
@@ -60,12 +61,15 @@ public class DatebaseUtils {
 					ModelFields modelFields = new ModelFields(mapperType, name, comment);
 					fieldsList.add(modelFields);
 					if ("Date".equals(mapperType)) {
-						if (null == modelBean.getImportPackage()) {
+						List<String> packages = modelBean.getImportPackage();
+						if (null == packages) {
 							List<String> importPackage = new ArrayList<String>();
 							importPackage.add("java.util.Date");
 							modelBean.setImportPackage(importPackage);
 						} else {
-							modelBean.getImportPackage().add("java.util.Date");
+							if (!packages.contains(type)) {
+								packages.add(type);
+							}
 						}
 					}
 				}

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper 
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${packageUrl}.dao.${className}Dao">
+<mapper namespace="${packageName}.dao.${className}Dao">
 	
-	<resultMap type="${packageUrl}.domain.${className}DO" id="${className}Result">
+	<resultMap type="${packageName}.domain.${className}DO" id="${className}Result">
 		<#list properties as property>
 			<<#if property_index == 0>id<#assign idName=property.popName><#assign idColumn=property.columnName><#else>result</#if> property="${property.popName}" column="${property.columnName}" />
 		</#list>
@@ -32,7 +32,7 @@
 			${idColumn}=${'#'}{${idName}}
 	</select>
 
-	<select id="select${className}List" parameterType="${packageUrl}.bo.Query${className}BO" resultMap="${className}Result">
+	<select id="select${className}List" parameterType="${packageName}.bo.Query${className}BO" resultMap="${className}Result">
 		SELECT 
 			<include refid="${className?uncap_first}-query-columns"/> 
 		FROM 
@@ -42,7 +42,7 @@
 	</select>
 	
 	<!-- insert -->
-	<insert id="insert${className}" parameterType="${packageUrl}.domain.${className}DO"
+	<insert id="insert${className}" parameterType="${packageName}.domain.${className}DO"
 		useGeneratedKeys="true" keyProperty="${idName}">
 		INSERT INTO ${tableName}
 		(
@@ -55,7 +55,7 @@
 	</insert>
 
 	<!-- update -->
-	<update id="update${className}" parameterType="${packageUrl}.${className}DO">
+	<update id="update${className}" parameterType="${packageName}.${className}DO">
 		UPDATE 
 			${tableName}
 		SET
@@ -66,7 +66,7 @@
 			${idColumn}=${'#'}{${idName}}
 	</update>
 	
-	<delete id="delete${className}" parameterType="${packageUrl}.${className}DO">
+	<delete id="delete${className}" parameterType="${packageName}.${className}DO">
 		DELETE FROM 
 			${tableName}
 		WHERE 

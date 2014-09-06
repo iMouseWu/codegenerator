@@ -6,7 +6,9 @@ import generator.inter.Chain;
 
 import java.io.IOException;
 
+import utils.Property;
 import model.Context;
+import model.ModelBean;
 
 public class DomainBuilder extends Builder implements Chain {
 
@@ -32,7 +34,7 @@ public class DomainBuilder extends Builder implements Chain {
 
 	@Override
 	public void builderFile(String content) {
-		String filePath = getFilePath() + getClassName() + ".java";
+		String filePath = getFilePath() + getClassName() + "DO.java";
 		writeFile(content, filePath);
 	}
 
@@ -59,5 +61,10 @@ public class DomainBuilder extends Builder implements Chain {
 	@Override
 	public void setNeedBuild(boolean isNeed) {
 		this.isNeedBuild = isNeed;
+	}
+
+	@Override
+	public String getPackageName() {
+		return Property.getInstance().getDomainPackage();
 	}
 }

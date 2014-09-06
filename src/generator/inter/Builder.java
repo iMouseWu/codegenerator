@@ -25,16 +25,16 @@ public abstract class Builder {
 		return model.getClassName();
 	}
 
-	public ModelBean getModel() {
-		return model;
-	}
-
 	public void setModel(ModelBean model) {
 		this.model = model;
 	}
 
+	public String getPackageName() {
+		return "";
+	}
+
 	public Configuration initConfiguration() {
-		File file = new File("/resources/template");
+		File file = new File(Builder.class.getResource("/").getPath() + "resources/template");
 		Configuration cfg = new Configuration();
 		try {
 			cfg.setDirectoryForTemplateLoading(file);
@@ -68,6 +68,7 @@ public abstract class Builder {
 
 	public void outputFile() {
 		Template template = builderTemplate();
+		model.setPackageName(getPackageName());
 		String content = FreeMarkerUtils.renderTemplate(template, model);
 		builderFile(content);
 	}

@@ -30,7 +30,7 @@ public class ModelBean {
 	}
 
 	public String getClassName() {
-		return changeTableName(tableName);
+		return changeTableName(this.tableName);
 	}
 
 	public String getTableName() {

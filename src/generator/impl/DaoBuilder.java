@@ -2,6 +2,7 @@ package generator.impl;
 
 import java.io.IOException;
 
+import utils.Property;
 import model.Context;
 import freemarker.template.Template;
 import generator.inter.Builder;
@@ -26,7 +27,7 @@ public class DaoBuilder extends Builder implements Chain {
 
 	@Override
 	public void builderFile(String content) {
-		String filePath = getFilePath() + getClassName() + ".java";
+		String filePath = getFilePath() + getClassName() + "DAO.java";
 		writeFile(content, filePath);
 	}
 
@@ -52,6 +53,11 @@ public class DaoBuilder extends Builder implements Chain {
 	@Override
 	public void setNeedBuild(boolean isNeed) {
 		this.isNeedBuild = isNeed;
+	}
+
+	@Override
+	public String getPackageName() {
+		return Property.getInstance().getDaoPackage();
 	}
 
 }

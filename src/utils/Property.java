@@ -38,7 +38,11 @@ public class Property {
 	}
 
 	public String getDomainPackage() {
-		return config.getProperty("file.package");
+		return config.getProperty("file.domainpackage");
+	}
+
+	public String getDaoPackage() {
+		return config.getProperty("file.daopackage");
 	}
 
 	public String getFilePath() {
