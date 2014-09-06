@@ -4,7 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
 import model.ModelBean;
 import utils.FileUtils;
@@ -14,28 +13,27 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 public abstract class Builder {
-
+	private Map<String, Object> model;
 	private String filePath;
-	private ModelBean model;
 
 	public String getFilePath() {
 		return Property.getInstance().getFilePath();
 	}
 
 	public String getClassName() {
-		return model.getClassName();
+		return ((ModelBean) (model.get("modelBean"))).getClassName();
 	}
 
-	public ModelBean getModel() {
+	public Map<String, Object> getModel() {
 		return model;
 	}
 
-	public void setModel(ModelBean model) {
+	public void setModel(Map<String, Object> model) {
 		this.model = model;
 	}
 
 	public Configuration initConfiguration() {
-		File file = new File(Builder.class.getResource("/").getPath() + "resources/template");
+		File file = new File("/resources/template");
 		Configuration cfg = new Configuration();
 		try {
 			cfg.setDirectoryForTemplateLoading(file);

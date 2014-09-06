@@ -17,13 +17,25 @@ public class Property {
 	private String url;
 	private String username;
 	private String password;
-
 	private String dbName;
 	private String tableName;
-
 	private String filePath;
-
 	private String domainPackage;
+	private Boolean isNeedDomain;
+	private Boolean isNeedSqlmapper;
+	private Boolean isNeedDao;
+
+	public Boolean getIsNeedDomain() {
+		return ("true").equals(config.getProperty("need.domain"));
+	}
+
+	public Boolean getIsNeedSqlmapper() {
+		return ("true").equals(config.getProperty("need.sqlmapper"));
+	}
+
+	public Boolean getIsNeedDao() {
+		return ("true").equals(config.getProperty("need.dao"));
+	}
 
 	public String getDomainPackage() {
 		return config.getProperty("file.package");

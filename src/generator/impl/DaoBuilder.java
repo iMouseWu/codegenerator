@@ -10,6 +10,7 @@ import generator.inter.Chain;
 public class DaoBuilder extends Builder implements Chain {
 
 	private Chain chain;
+	private boolean isNeedBuild;
 
 	@Override
 	public Template builderTemplate() {
@@ -36,9 +37,21 @@ public class DaoBuilder extends Builder implements Chain {
 
 	@Override
 	public void doNext(Context context) {
-		this.setModel(context.getModel());
-		this.outputFile();
+		if (isNeedBuild()) {
+			this.setModel(context.getModel());
+			this.outputFile();
+		}
 		chain.doNext(context);
+	}
+
+	@Override
+	public boolean isNeedBuild() {
+		return this.isNeedBuild;
+	}
+
+	@Override
+	public void setNeedBuild(boolean isNeed) {
+		this.isNeedBuild = isNeed;
 	}
 
 }

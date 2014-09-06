@@ -1,17 +1,17 @@
-package ${packageName}.domain;
+package ${modelBean.packageName}.domain;
 
-<#list importPackage as imports>
-import ${imports};
+<#list modelBean.importPackage as importPackage>
+import ${importPackage};
 </#list>
 
-public class ${className} {
-	<#list properties as property>
+public class ${modelBean.className} {
+	<#list modelBean.properties as property>
 	/**
 	 * ${property.comment}
 	 */
 	private ${property.popType} ${property.popName};
 	</#list>
-	<#list properties as property>
+	<#list modelBean.properties as property>
 	public ${property.popType} get${property.popName?cap_first}() {
 		return ${property.popName};
 	}
