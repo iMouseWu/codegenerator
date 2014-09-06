@@ -1,6 +1,5 @@
 package generator;
 
-import generator.inter.Builder;
 import generator.inter.Chain;
 
 import java.util.List;

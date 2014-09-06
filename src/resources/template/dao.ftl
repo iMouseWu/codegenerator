@@ -1,24 +1,25 @@
 /**
  * There are <a href="https://github.com/thinkgem/jeesite">JeeSite</a> code generation
  */
-package ${modelBean.packageUrl}.dao;
+package ${packageUrl}.dao;
 
 
-import ${modelBean.packageUrl}.domain.${modelBean.className}DO;
-import ${modelBean.packageUrl}.bo.Query${modelBean.className}BO;
+import ${packageUrl}.domain.${className}DO;
+import ${packageUrl}.bo.Query${className}BO;
 
 public class ${ClassName}Dao {
 
 	/**
-     * @param select${modelBean.className}ById
+     * @param select${className}ById
      * @return
      */
-	public ${ClassName}DO select${modelBean.className}ById(Long id);
+	public ${ClassName}DO select${className}ById(Long id);
 	/**
-     * @param select${modelBean.className}List
+     * @param select${className}List
      * @return
      */
-    public List<${ClassName}DO> select${modelBean.className}List(Query${modelBean.className}BO query);
+    public List<${ClassName}DO> select${className}List(Query${className}BO query);
 	
 	public int 
 }
+
