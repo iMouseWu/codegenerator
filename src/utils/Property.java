@@ -11,7 +11,7 @@ import java.util.Properties;
  */
 public class Property {
 
-	private static Property propertyUtils;
+	private static Property property;
 	private Properties config;
 	private String driverClassName;
 	private String url;
@@ -75,8 +75,6 @@ public class Property {
 
 	private Property(){
 		try {
-			// config =
-			// FileUtils.loadPropertiesByCurrentThread("resources\\config.properties");
 			config = new Properties();
 			InputStream in = Property.class.getClassLoader().getResourceAsStream("resources/config.properties");
 			config.load(in);
@@ -86,9 +84,9 @@ public class Property {
 	}
 
 	public static Property getInstance() {
-		if (null == propertyUtils) {
-			propertyUtils = new Property();
+		if (null == property) {
+			property = new Property();
 		}
-		return propertyUtils;
+		return property;
 	}
 }

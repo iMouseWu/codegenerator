@@ -50,7 +50,6 @@ public class DatebaseUtils {
 				List<ModelFields> fieldsList = new ArrayList<ModelFields>();
 				ModelBean modelBean = new ModelBean();
 				modelBean.setTableName(tableName);
-
 				pstmt.setString(2, tableName);
 				ResultSet rs = pstmt.executeQuery();
 				while (rs.next()) {
